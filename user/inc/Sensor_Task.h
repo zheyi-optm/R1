@@ -3,24 +3,28 @@
 
 #include <stdint.h>
 
-/** IMU æ•°æ®ç»“æ„ï¼ˆç”± Sensor_Task è°ƒç”¨ Modbus å¸§è§£æå†™å…¥ï¼‰ */
+/**
+ * @brief  IMU ´«¸ĞÆ÷Êı¾İ½á¹¹
+ * @note   ÓÉ IMU_ParseFrameIfReady() ½âÎö Modbus Ö¡ºóĞ´Èë
+ */
 typedef struct {
-    float acc_x_g;     /* g */
-    float acc_y_g;
-    float acc_z_g;
-    float gyr_x_dps;   /* deg/s */
-    float gyr_y_dps;
-    float gyr_z_dps;
-    float mag_x_ut;    /* uT */
-    float mag_y_ut;
-    float mag_z_ut;
-    float roll_deg;
-    float pitch_deg;
-    float yaw_deg;
+    float acc_x_g;     /**< ¼ÓËÙ¶È X Öá (g) */
+    float acc_y_g;     /**< ¼ÓËÙ¶È Y Öá (g) */
+    float acc_z_g;     /**< ¼ÓËÙ¶È Z Öá (g) */
+    float gyr_x_dps;   /**< ½ÇËÙ¶È X Öá (deg/s) */
+    float gyr_y_dps;   /**< ½ÇËÙ¶È Y Öá (deg/s) */
+    float gyr_z_dps;   /**< ½ÇËÙ¶È Z Öá (deg/s) */
+    float mag_x_ut;    /**< ´Å³¡Ç¿¶È X Öá (uT) */
+    float mag_y_ut;    /**< ´Å³¡Ç¿¶È Y Öá (uT) */
+    float mag_z_ut;    /**< ´Å³¡Ç¿¶È Z Öá (uT) */
+    float roll_deg;    /**< ºá¹ö½Ç (deg) */
+    float pitch_deg;   /**< ¸©Ñö½Ç (deg) */
+    float yaw_deg;     /**< Æ«º½½Ç (deg) */
 } sensor_imu_t;
 
 /**
- * ä¼ æ„Ÿå™¨èåˆæ•°æ®ï¼ˆIMU + é‡Œç¨‹è®¡ï¼Œç”± rc_get_latest_odom åˆ·æ–°ï¼‰
+ * @brief ´«¸ĞÆ÷ÈÚºÏÊı¾İ
+ * @note  µ±Ç°½ö°üº¬ IMU Êı¾İ£¬ºóĞø¿ÉÀ©Õ¹Àï³Ì¼ÆµÈ
  */
 typedef struct {
     sensor_imu_t imu;

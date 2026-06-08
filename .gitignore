@@ -1,0 +1,95 @@
+# ==================== IDE: Keil MDK-ARM ====================
+# Project outputs (不要提交编译产物)
+*.hex
+*.bin
+*.axf
+*.elf
+*.map
+*.lst
+*.lnp
+
+# Build artifacts (每个源文件的中间文件)
+*.o
+*.d
+*.crf
+*.dep
+
+# Scatter file (CubeMX 自动生成)
+*.sct
+
+# Linker intermediate
+*.iex
+
+# Build log
+*.build_log.htm
+
+# --- Keil project user settings (每人路径不同) ---
+*.uvguix.*
+*.uvguix
+*.uvoptx
+*.uvopt
+
+# J-Link / SEGGER
+JLinkLog.txt
+JLink*
+
+# ST-LINK
+.stlink*
+
+# CMSIS-Pack
+*.PDSC
+RTE/
+
+# --- IDE misc ---
+*.scvd
+*.ini
+
+# ==================== STM32CubeMX / STM32CubeIDE ====================
+# CubeMX intermediate project files (gen by CubeMX, user-local)
+.mxproject
+
+# CubeIDE (如果以后迁移)
+.cproject
+.project
+.settings/
+Debug/
+Release/
+*.launch
+
+# ==================== Driver auto-generated HAL init files ====================
+# 这些虽然代码有价值，但属于 HAL 自动生成，可以按团队约定决定是否保留
+# Core/Src/stm32h7xx_hal_msp.c
+# Core/Src/stm32h7xx_it.c
+# Core/Src/system_stm32h7xx.c
+
+# ==================== Debug & Trace ====================
+*.ini
+*.dbgconf
+
+# ==================== OS generated files ====================
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ==================== Editor / IDE ====================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.bak
+
+# ==================== Temporary / generated ====================
+*.tmp
+*.temp
+__pycache__/
+*.pyc
+*.pyo
+
+# ==================== Archive / backup ====================
+*.zip
+*.rar
+*.7z
+*.tar.gz
+*.tar.xz
+!RC26_H7_R2.zip

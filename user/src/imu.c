@@ -1,6 +1,6 @@
 /**
  * @file    imu.c
- * @brief   HI14 (RS-485 Modbus) IMU driver + power-on init sequence
+ * @brief   HI14 (RS-485 Modbus) IMU Çı¶¯ + ÉÏµç³õÊ¼»¯ĞòÁĞ
  */
 #include "imu.h"
 #include "Sensor_Task.h"
@@ -36,7 +36,7 @@ static uint16_t crc16_modbus(const uint8_t *buf, uint16_t len)
     return crc;
 }
 
-/* ---------------- RS-485 send helpers (USART2) ---------------- */
+/* ---------------- RS-485 ·¢ËÍ¸¨Öúº¯Êı (USART2) ---------------- */
 static void imu_rs485_send_bytes(const uint8_t *data, uint16_t len)
 {
     if (data == NULL || len == 0U) return;
@@ -56,7 +56,7 @@ static uint8_t imu_rs485_send_and_wait_echo8(const uint8_t tx8[8], uint32_t time
     (void)HAL_UART_AbortReceive(&huart2);
     imu_rs485_send_bytes(tx8, 8U);
 
-    /* å†™å¯„å­˜å™¨å›åº”åº”ä¸º 8 å­—èŠ‚å›æ˜¾ï¼šAddr Func RegHi RegLo ValHi ValLo CRCL CRCH */
+    /* Ğ´¼Ä´æÆ÷»ØÓ¦Ó¦Îª 8 ×Ö½Ú»ØÏÔ£ºAddr Func RegHi RegLo ValHi ValLo CRCL CRCH */
     if (HAL_UART_Receive(&huart2, rx8, 8U, (uint32_t)timeout_ms) != HAL_OK)
     {
         return 0U;
@@ -69,31 +69,31 @@ static uint8_t imu_rs485_send_and_wait_echo8(const uint8_t tx8[8], uint32_t time
     return 1U;
 }
 
-/* ---------------- HI14 power-on init sequence ---------------- */
+/* ---------------- HI14 ÉÏµç³õÊ¼»¯ĞòÁĞ ---------------- */
 int32_t IMU_HI14_PowerOnInit(void)
 {
-    /* Step1: Write HEADING_MODE (0x0006) = 0x0000, CRC calculated */
+    /* ²½Öè1: Ğ´ HEADING_MODE (0x0006) = 0x0000£¬¶¯Ì¬¼ÆËã CRC */
     uint8_t frm1[8] = {0x50U, 0x06U, 0x00U, 0x06U, 0x00U, 0x00U, 0x00U, 0x00U};
     const uint16_t crc1 = crc16_modbus(frm1, 6U);
     frm1[6] = (uint8_t)(crc1 & 0xFFU);         /* CRC_L */
     frm1[7] = (uint8_t)((crc1 >> 8) & 0xFFU);  /* CRC_H */
 
-    /* è‡³å°‘å¯¹ç¬¬ 1 å¸§å›è¯»ç¡®è®¤ï¼Œç­‰å¾… 8 å­—èŠ‚å›æ˜¾ */
+    /* ÖÁÉÙ¶ÔµÚ 1 Ö¡»Ø¶ÁÈ·ÈÏ£¬µÈ´ı 8 ×Ö½Ú»ØÏÔ */
     if (imu_rs485_send_and_wait_echo8(frm1, 80U) == 0U)
     {
         return -1;
     }
 
-    /* Step2: CTRL reset (existing frame) */
+    /* ²½Öè2: CTRL ¸´Î» */
     {
         static const uint8_t frm2[8] = {0x50U, 0x06U, 0x00U, 0x00U, 0x00U, 0xFFU, 0xC4U, 0x0BU};
         imu_rs485_send_bytes(frm2, 8U);
     }
 
-    /* Step3: wait module reboot & keep still about 2s */
+    /* ²½Öè3: µÈ´ıÄ£¿éÖØÆô£¬±£³Ö¾²Ö¹Ô¼ 2 Ãë */
     HAL_Delay(1500U);
 
-    /* Step4: Pitch/Roll reset (existing frame) */
+    /* ²½Öè4: ¸©Ñö/ºá¹ö¹éÁã */
     {
         static const uint8_t frm3[8] = {0x50U, 0x06U, 0x00U, 0xA5U, 0x00U, 0x02U, 0x15U, 0xA9U};
         imu_rs485_send_bytes(frm3, 8U);
@@ -102,10 +102,10 @@ int32_t IMU_HI14_PowerOnInit(void)
     return 0;
 }
 
-/* ---------------- periodic request + parse (moved from Sensor_Task.c) ---------------- */
+/* ---------------- ÖÜÆÚÇëÇó + ½âÎö£¨´Ó Sensor_Task.c Ç¨Èë£© ---------------- */
 void IMU_RequestAndStartRx(void)
 {
-    /* 0x50 0x03 ... è¯·æ±‚å¸§ï¼ˆåŸé€»è¾‘ä¿ç•™ï¼‰ */
+    /* 0x50 0x03 ... ÇëÇóÖ¡£¨Ô­Âß¼­±£Áô£© */
     static const uint8_t req[8] = {0x50U, 0x03U, 0x00U, 0x34U, 0x00U, 0x18U, 0x09U, 0x8FU};
 
     imu_rs485_send_bytes(req, 8U);

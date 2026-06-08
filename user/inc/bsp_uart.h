@@ -6,7 +6,6 @@
 #include "dma.h"
 #include "remote_control.h"
 
-/** USART2(HI14 IMU) 接收上下文（volatile 只在定义 g_imu_uart_ctx 上，此处便于重复引用） */
 typedef struct
 {
     uint8_t  rx_ready;

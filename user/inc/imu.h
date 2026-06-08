@@ -1,11 +1,11 @@
 /**
  * @file    imu.h
- * @brief   HI14 (RS-485 Modbus) IMU driver + power-on init sequence
+ * @brief   HI14 (RS-485 Modbus) IMU Çı¶¯ + ÉÏµç³õÊ¼»¯ĞòÁĞ
  *
- * è¯´æ˜ï¼š
- * - ä½¿ç”¨ USART2 (RS485) ä¸ HI14 é€šè®¯
- * - æ”¯æŒä¸Šç”µåˆå§‹åŒ–(èˆªå‘heading=0) + å¤ä½ + çº¦2sé™æ­¢ + PRå½’é›¶
- * - Sensor_Task å‘¨æœŸè°ƒç”¨ï¼Œå‘é€ä¸€å¸§ + è§£ææ›´æ–° g_sensor_task_data.imu
+ * ËµÃ÷£º
+ * - Ê¹ÓÃ USART2 (RS485) Óë HI14 Í¨Ñ¶
+ * - Ö§³ÖÉÏµç³õÊ¼»¯(º½Ïòheading=0) + ¸´Î» + Ô¼2s¾²Ö¹ + PR¹éÁã
+ * - Sensor_Task ÖÜÆÚµ÷ÓÃ£¬·¢ËÍÒ»Ö¡ + ½âÎö¸üĞÂ g_sensor_task_data.imu
  */
 #ifndef __IMU_H__
 #define __IMU_H__
@@ -17,15 +17,15 @@ extern "C" {
 #endif
 
 /**
- * @brief HI14 ä¸Šç”µåˆå§‹åŒ–åºåˆ—ï¼ˆå¼€æœºå‰è°ƒç”¨ï¼‰
- * @return 0 æˆåŠŸï¼Œé0 è¡¨ç¤ºstep1(å†™0x0006)æœªé€šè¿‡å›è¯»ç¡®è®¤æˆ–é€šè®¯å¼‚å¸¸
+ * @brief HI14 ÉÏµç³õÊ¼»¯ĞòÁĞ£¨¿ª»úÇ°µ÷ÓÃ£©
+ * @return 0 ³É¹¦£¬·Ç0 ±íÊ¾step1(Ğ´0x0006)Î´Í¨¹ı»Ø¶ÁÈ·ÈÏ»òÍ¨Ñ¶Òì³£
  */
 int32_t IMU_HI14_PowerOnInit(void);
 
-/** @brief å‘é€è¯·æ±‚å¸§å¹¶å¯åŠ¨æ¥æ”¶ï¼ˆåŸ Sensor_Task å†…éƒ¨é€»è¾‘ï¼‰ */
+/** @brief ·¢ËÍÇëÇóÖ¡²¢Æô¶¯½ÓÊÕ£¨Ô­ Sensor_Task ÄÚ²¿Âß¼­£© */
 void IMU_RequestAndStartRx(void);
 
-/** @brief æ£€æŸ¥æ¥æ”¶å®Œæˆå¹¶è§£æï¼Œç»“æœå†™å…¥ g_sensor_task_data.imu */
+/** @brief ¼ì²é½ÓÊÕÍê³É²¢½âÎö£¬½á¹ûĞ´Èë g_sensor_task_data.imu */
 void IMU_ParseFrameIfReady(void);
 
 #ifdef __cplusplus
