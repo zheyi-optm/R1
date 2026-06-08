@@ -1,0 +1,13 @@
+*** Using Compiler 'V5.06 update 6 (build 750)', folder: 'E:\Keil_v5\ARM\ARMCC\Bin'
+Build target 'RC26_H7_R1'
+compiling app_zone2.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+..\user\src\app_zone2.c(214): warning:  #550-D: variable "s_step_pre_delay_tick"  was set but never used
+  static uint32_t s_step_pre_delay_tick;
+..\user\src\app_zone2.c: 2 warnings, 0 errors
+linking...
+Program Size: Code=103136 RO-data=2032 RW-data=2040 ZI-data=34872  
+FromELF: creating hex file...
+"RC26_H7_R1\RC26_H7_R1.axf" - 0 Error(s), 2 Warning(s).
+Build Time Elapsed:  00:00:09

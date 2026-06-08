@@ -1,0 +1,14 @@
+rc26_h7_r1\app_init.o: ..\user\src\app_init.c
+rc26_h7_r1\app_init.o: ../user/inc/app_init.h
+rc26_h7_r1\app_init.o: ../user/inc/r1_link.h
+rc26_h7_r1\app_init.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+rc26_h7_r1\app_init.o: ../user/inc/app_zone2.h
+rc26_h7_r1\app_init.o: ../user/inc/odom_nav_goto.h
+rc26_h7_r1\app_init.o: ../user/inc/R1_R2_connect.h
+rc26_h7_r1\app_init.o: ../user/inc/r1_link_sig.h
+rc26_h7_r1\app_init.o: ../user/inc/r1_usart1_link.h
+rc26_h7_r1\app_init.o: ../user/inc/r1_usart1_proto.h
+rc26_h7_r1\app_init.o: ../user/inc/r1_usart3_link.h
+rc26_h7_r1\app_init.o: ../user/inc/r1_usart3_proto.h
+rc26_h7_r1\app_init.o: ../user/inc/r1_uart_rx_dispatch.h
+rc26_h7_r1\app_init.o: ../user/inc/app_zone3.h
