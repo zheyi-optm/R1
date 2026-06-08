@@ -1,3 +1,0 @@
-*** Using Compiler 'V5.06 update 6 (build 750)', folder: 'E:\Keil_v5\ARM\ARMCC\Bin'
-Build target 'RC26_H7_R1'
-Note: source file '..\user\src\app_hook_init.c' - object file renamed from 'RC26_H7_R1\app_hook_init.o' to 'RC26_H7_R1\app_hook_init_1.o'.
