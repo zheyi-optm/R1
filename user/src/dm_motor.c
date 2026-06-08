@@ -20,7 +20,7 @@ static uint16_t float_to_uint(float X_float, float X_min, float X_max, int bits)
   * @Brief    达妙电机控制帧(未测试)
   * @Param		
   * @Retval		None
-  * @Date     2024/12/26
+  * @Date     2024/12/26      
  *******************************************************************************************/
 HAL_StatusTypeDef DM_Motor_CMD(DM_MotorModule *obj,Motor_CMD CMD)
 {
