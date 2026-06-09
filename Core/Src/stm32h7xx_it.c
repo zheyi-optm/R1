@@ -28,6 +28,7 @@
 #include "timer.h"
 #include "Can_Task.h"
 #include "bsp_uart.h"
+#include "imu.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -288,7 +289,15 @@ void USART2_IRQHandler(void)
 void TIM8_BRK_TIM12_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM8_BRK_TIM12_IRQn 0 */
+	//IMUÊý¾Ý½ÓÊÕÓë½âÎö
+	if (__HAL_TIM_GET_FLAG(&htim12, TIM_FLAG_UPDATE) != RESET)
+	{
+		__HAL_TIM_CLEAR_FLAG(&htim12, TIM_FLAG_UPDATE);
 
+	   IMU_ParseFrameIfReady();
+	   IMU_RequestAndStartRx();
+
+	 }
   /* USER CODE END TIM8_BRK_TIM12_IRQn 0 */
   HAL_TIM_IRQHandler(&htim12);
   /* USER CODE BEGIN TIM8_BRK_TIM12_IRQn 1 */
@@ -316,7 +325,7 @@ void TIM8_UP_TIM13_IRQHandler(void)
 void TIM5_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM5_IRQn 0 */
-//canï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//can?????????
 	if (__HAL_TIM_GET_FLAG(&htim5, TIM_FLAG_UPDATE) != RESET)
  {
 	__HAL_TIM_CLEAR_FLAG(&htim5, TIM_FLAG_UPDATE);

@@ -1,9 +1,8 @@
 /**
  * @file    imu.c
- * @brief   HI14 (RS-485 Modbus) IMU 驱动 + 上电初始化序列
+ * @brief   HI14 (RS-485 Modbus) IMU ???? + ???????????
  */
 #include "imu.h"
-#include "Sensor_Task.h"
 #include "bsp_uart.h"
 #include "usart.h"
 #include "main.h"
@@ -36,7 +35,7 @@ static uint16_t crc16_modbus(const uint8_t *buf, uint16_t len)
     return crc;
 }
 
-/* ---------------- RS-485 发送辅助函数 (USART2) ---------------- */
+/* ---------------- RS-485 ??????????? (USART2) ---------------- */
 static void imu_rs485_send_bytes(const uint8_t *data, uint16_t len)
 {
     if (data == NULL || len == 0U) return;
@@ -56,7 +55,7 @@ static uint8_t imu_rs485_send_and_wait_echo8(const uint8_t tx8[8], uint32_t time
     (void)HAL_UART_AbortReceive(&huart2);
     imu_rs485_send_bytes(tx8, 8U);
 
-    /* 写寄存器回应应为 8 字节回显：Addr Func RegHi RegLo ValHi ValLo CRCL CRCH */
+    /* д?????????? 8 ???????Addr Func RegHi RegLo ValHi ValLo CRCL CRCH */
     if (HAL_UART_Receive(&huart2, rx8, 8U, (uint32_t)timeout_ms) != HAL_OK)
     {
         return 0U;
@@ -69,31 +68,31 @@ static uint8_t imu_rs485_send_and_wait_echo8(const uint8_t tx8[8], uint32_t time
     return 1U;
 }
 
-/* ---------------- HI14 上电初始化序列 ---------------- */
+/* ---------------- HI14 ??????????? ---------------- */
 int32_t IMU_HI14_PowerOnInit(void)
 {
-    /* 步骤1: 写 HEADING_MODE (0x0006) = 0x0000，动态计算 CRC */
+    /* ????1: д HEADING_MODE (0x0006) = 0x0000????????? CRC */
     uint8_t frm1[8] = {0x50U, 0x06U, 0x00U, 0x06U, 0x00U, 0x00U, 0x00U, 0x00U};
     const uint16_t crc1 = crc16_modbus(frm1, 6U);
     frm1[6] = (uint8_t)(crc1 & 0xFFU);         /* CRC_L */
     frm1[7] = (uint8_t)((crc1 >> 8) & 0xFFU);  /* CRC_H */
 
-    /* 至少对第 1 帧回读确认，等待 8 字节回显 */
+    /* ?????? 1 ??????????? 8 ?????? */
     if (imu_rs485_send_and_wait_echo8(frm1, 80U) == 0U)
     {
         return -1;
     }
 
-    /* 步骤2: CTRL 复位 */
+    /* ????2: CTRL ??λ */
     {
         static const uint8_t frm2[8] = {0x50U, 0x06U, 0x00U, 0x00U, 0x00U, 0xFFU, 0xC4U, 0x0BU};
         imu_rs485_send_bytes(frm2, 8U);
     }
 
-    /* 步骤3: 等待模块重启，保持静止约 2 秒 */
+    /* ????3: ??????????????????? 2 ?? */
     HAL_Delay(1500U);
 
-    /* 步骤4: 俯仰/横滚归零 */
+    /* ????4: ????/??????? */
     {
         static const uint8_t frm3[8] = {0x50U, 0x06U, 0x00U, 0xA5U, 0x00U, 0x02U, 0x15U, 0xA9U};
         imu_rs485_send_bytes(frm3, 8U);
@@ -102,10 +101,10 @@ int32_t IMU_HI14_PowerOnInit(void)
     return 0;
 }
 
-/* ---------------- 周期请求 + 解析（从 Sensor_Task.c 迁入） ---------------- */
+/* ---------------- ???????? + ???????? Sensor_Task.c ??? ---------------- */
 void IMU_RequestAndStartRx(void)
 {
-    /* 0x50 0x03 ... 请求帧（原逻辑保留） */
+    /* 0x50 0x03 ... ????????????????? */
     static const uint8_t req[8] = {0x50U, 0x03U, 0x00U, 0x34U, 0x00U, 0x18U, 0x09U, 0x8FU};
 
     imu_rs485_send_bytes(req, 8U);

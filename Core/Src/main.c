@@ -31,6 +31,7 @@
 #include "register.h"
 #include "bsp_can.h"
 #include "bsp_uart.h"
+#include "imu.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -114,6 +115,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
   BSP_CAN_Init();
   BSP_USART_Init();
+  (void)IMU_HI14_PowerOnInit();
 	
   HAL_Delay(1500);
   Structue_Init();
@@ -122,8 +124,7 @@ int main(void)
 	HAL_TIM_Base_Start(&htim2);
   HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_1 );
   HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_3 );
-	BSP_USART2_DE(0U);  /* 初始化为接收模式 */
-	HAL_TIM_Base_Start(&htim12);
+	BSP_USART2_DE(0U);  /* ???????????? */
 	HAL_TIM_Base_Start_IT(&htim12);
 	HAL_TIM_Base_Start(&htim4);
 	HAL_TIM_Base_Start_IT(&htim4);
