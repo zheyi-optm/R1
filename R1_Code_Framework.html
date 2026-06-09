@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>R1 机器人控制代码框架文档</title>
+<style>
+:root{--bg:#1a1a2e;--card:#16213e;--card2:#0f3460;--accent:#e94560;--accent2:#533483;--text:#e0e0e0;--text2:#a0a0b0;--border:#2a2a4a;--tag-bg:#1a3a5c;--tag-text:#7ec8e3;--green:#50fa7b;--orange:#ffb86c;--yellow:#f1fa8c;--blue:#8be9fd;--pink:#ff79c6;--purple:#bd93f9}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Segoe UI","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
+.header{background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 100%);padding:60px 20px;text-align:center;position:relative;overflow:hidden}
+.header h1{font-size:2.8em;font-weight:700;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.3);margin-bottom:10px}
+.header .subtitle{font-size:1.2em;color:rgba(255,255,255,.85);font-weight:300}
+.header .badges{margin-top:20px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.badge{background:rgba(255,255,255,.2);color:#fff;padding:6px 16px;border-radius:20px;font-size:.9em}
+.container{max-width:1200px;margin:0 auto;padding:40px 20px}
+.section{margin-bottom:40px}
+.section-title{font-size:1.8em;font-weight:700;color:var(--accent);margin-bottom:20px;padding-bottom:10px;border-bottom:2px solid var(--accent);display:flex;align-items:center;gap:10px}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px;margin-bottom:30px}
+.card{background:var(--card);border-radius:12px;padding:24px;border:1px solid var(--border);transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-3px);box-shadow:0 8px 25px rgba(233,69,96,.15)}
+.card.highlight{border-left:4px solid var(--accent)}
+.card.green{border-left:4px solid var(--green)}
+.card.orange{border-left:4px solid var(--orange)}
+.card.blue{border-left:4px solid var(--blue)}
+.card.purple{border-left:4px solid var(--purple)}
+.card.pink{border-left:4px solid var(--pink)}
+.card h3{font-size:1.2em;margin-bottom:10px;color:var(--text);display:flex;align-items:center;gap:8px}
+.card p{color:var(--text2);font-size:.95em;margin-bottom:12px}
+.card .tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{background:var(--tag-bg);color:var(--tag-text);padding:2px 10px;border-radius:12px;font-size:.8em;font-weight:500}
+.tag.red{background:rgba(233,69,96,.2);color:var(--accent)}
+.tag.green{background:rgba(80,250,123,.15);color:var(--green)}
+.tag.yellow{background:rgba(241,250,140,.15);color:var(--yellow)}
+.arch-diagram{background:var(--card);border-radius:12px;padding:30px;border:1px solid var(--border);overflow-x:auto;text-align:center}
+.arch-box{background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:12px 20px;text-align:center;min-width:80px;font-size:.9em;color:var(--text);display:inline-block;margin:6px}
+.arch-box.app{border-color:var(--accent);background:rgba(233,69,96,.15)}
+.arch-box.hal{border-color:var(--blue);background:rgba(139,233,253,.1)}
+.arch-box.rtos{border-color:var(--green);background:rgba(80,250,123,.1)}
+.arch-box.drv{border-color:var(--purple);background:rgba(189,147,249,.1)}
+.arrow-down{text-align:center;color:var(--accent);font-size:1.5em;margin:5px 0}
+.tree{background:var(--card);border-radius:12px;padding:25px 30px;border:1px solid var(--border);font-family:"Cascadia Code",Consolas,"Microsoft YaHei",monospace;font-size:.9em;line-height:2;overflow-x:auto;white-space:pre}
+.tree .dir{color:var(--blue)}.tree .file{color:var(--text2)}.tree .comment{color:#6272a4}
+.flow-container{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px;padding:20px;background:var(--card);border-radius:12px;border:1px solid var(--border)}
+.flow-step{background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:10px 16px;font-size:.85em;color:var(--text);text-align:center}
+.flow-arrow{color:var(--accent);font-size:1.2em}
+.info-table{width:100%;border-collapse:collapse;background:var(--card);border-radius:12px;overflow:hidden;border:1px solid var(--border)}
+.info-table th{background:var(--card2);color:var(--accent);padding:12px 16px;text-align:left;font-weight:600;font-size:.9em}
+.info-table td{padding:10px 16px;border-top:1px solid var(--border);font-size:.9em;color:var(--text2)}
+.info-table tr:hover td{background:rgba(233,69,96,.05)}
+.info-table .hl{background:rgba(233,69,96,.08)}
+.footer{text-align:center;padding:30px;color:var(--text2);font-size:.85em;border-top:1px solid var(--border);margin-top:40px}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.dot-red{background:var(--accent)}.dot-green{background:var(--green)}.dot-orange{background:var(--orange)}.dot-blue{background:var(--blue)}.dot-purple{background:var(--purple)}.dot-pink{background:var(--pink)}
+@media(max-width:768px){.header h1{font-size:1.8em}.card-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="header">
+<h1>🤖 R1 —— 机器人嵌入式控制代码框架</h1>
+<p class="subtitle">基于 STM32H723 + FreeRTOS 的竞赛机器人实时控制系统</p>
+<div class="badges">
+<span class="badge">STM32H723VGT6</span>
+<span class="badge">Cortex-M7 @ 480MHz</span>
+<span class="badge">FreeRTOS / CMSIS-RTOS V2</span>
+<span class="badge">Keil MDK-ARM</span>
+<span class="badge">HAL Driver</span>
+</div>
+</div>
+
+<div class="container">
+
+<div class="section">
+<div class="section-title">📋 1. 项目总览</div>
+<p style="color:var(--text2);margin-bottom:20px">
+R1 是一款面向 RoboMaster 竞赛的实时嵌入式机器人控制系统。项目基于 STM32H723 Cortex-M7 微控制器，搭载 FreeRTOS 实时操作系统，集成了 CAN 总线通信、IMU 惯性导航、遥控器接收、多轴电机控制、底盘运动学解算、机械臂/武器系统管理等功能模块，构成完整的机器人运动与控制闭环。
+</p>
+<div class="card-grid">
+<div class="card highlight">
+<h3><span class="dot dot-red"></span> 目标平台</h3>
+<p>STM32H723VGT6, ARM Cortex-M7 内核, 最高主频 480MHz, Flash 1MB, SRAM 564KB, LDO 供电模式</p>
+<div class="tags"><span class="tag red">H723</span><span class="tag">Cortex-M7</span><span class="tag">480MHz</span></div>
+</div>
+<div class="card green">
+<h3><span class="dot dot-green"></span> 操作系统</h3>
+<p>FreeRTOS 10.x 配 CMSIS-RTOS V2 接口层，3 个用户任务 (defaultTask / FreeTask / SentTask)，heap_4 内存管理</p>
+<div class="tags"><span class="tag green">FreeRTOS</span><span class="tag">CMSIS-RTOS2</span><span class="tag">heap_4</span></div>
+</div>
+<div class="card orange">
+<h3><span class="dot dot-orange"></span> 开发环境</h3>
+<p>Keil MDK-ARM IDE 编译，STM32CubeMX 生成 HAL 外设驱动框架，用户应用逻辑位于 user/ 目录，三层代码结构</p>
+<div class="tags"><span class="tag">Keil MDK</span><span class="tag">CubeMX</span><span class="tag">HAL</span></div>
+</div>
+<div class="card blue">
+<h3><span class="dot dot-blue"></span> 版本说明</h3>
+<p>R1 为基础版本，HI14 IMU 通过 USART2 RS485 外接。RC26_H7_R2 为升级版，整合 BMI088 IMU SPI 直驱、USB PCD 及更多应用模块</p>
+<div class="tags"><span class="tag">R1 基础版</span><span class="tag">RC26_H7_R2 升级版</span></div>
+</div>
+</div>
+</div>
+
+<div class="section">
+<div class="section-title">🏗️ 2. 系统分层架构</div>
+<div class="arch-diagram">
+<div style="margin-bottom:10px"><span class="arch-box app" style="font-size:1.1em;padding:14px 28px">🎯 应用层 Application<br><small>user/ —— 28 个业务模块</small></span></div>
+<div class="arrow-down">⬇</div>
+<div style="margin:8px 0">
+<span class="arch-box rtos">FreeRTOS<br><small>任务调度</small></span>
+<span class="arch-box rtos">CMSIS-RTOS2<br><small>API 封装</small></span>
+<span class="arch-box rtos">Timer ISR<br><small>LF/HF/IMU 中断</small></span>
+</div>
+<div class="arrow-down">⬇</div>
+<div style="margin:8px 0">
+<span class="arch-box hal">STM32 HAL<br><small>硬件抽象层</small></span>
+<span class="arch-box hal">CMSIS-Core<br><small>ARM 内核</small></span>
+<span class="arch-box hal">BSP 层<br><small>板级支持包</small></span>
+</div>
+<div class="arrow-down">⬇</div>
+<div style="margin:8px 0">
+<span class="arch-box drv">FDCAN x3<br><small>CAN 1Mbps</small></span>
+<span class="arch-box drv">UART x4<br><small>115200/9600</small></span>
+<span class="arch-box drv">TIM x4<br><small>PWM/Base</small></span>
+<span class="arch-box drv">DMA x3<br><small>Stream</small></span>
+<span class="arch-box drv">GPIO<br><small>数字 IO</small></span>
+</div>
+</div>
+</div>
+
+<div class="section">
+<div class="section-title">📁 3. 代码目录结构</div>
+<div class="tree">
+<span class="dir">R1/</span>
+<span class="dir">├── Core/</span>                          <span class="comment"># CubeMX HAL 驱动层</span>
+<span class="dir">│   ├── Inc/</span>                       <span class="comment"># 头文件: main.h gpio.h dma.h fdcan.h tim.h usart.h ...</span>
+<span class="dir">│   └── Src/</span>                       <span class="comment"># 源文件</span>
+<span class="dir">│       ├──</span> <span class="file">main.c</span>                <span class="comment"># 入口: HAL初始化 时钟 外设 BSP RTOS启动</span>
+<span class="dir">│       ├──</span> <span class="file">freertos.c</span>            <span class="comment"># RTOS 3任务: defaultTask FreeTask SentTask</span>
+<span class="dir">│       ├──</span> <span class="file">stm32h7xx_it.c</span>        <span class="comment"># ISR→业务桥接 (LF/HF/IMU/遥控)</span>
+<span class="dir">│       ├──</span> <span class="file">fdcan.c</span>               <span class="comment"># 3路 FDCAN: 底盘/云台/扩展</span>
+<span class="dir">│       ├──</span> <span class="file">usart.c</span>               <span class="comment"># 4路串口: UART5/7/8 + USART2(RS485)</span>
+<span class="dir">│       ├──</span> <span class="file">tim.c</span>                 <span class="comment"># TIM2 PWM + TIM4/5/12 中断</span>
+<span class="dir">│       └──</span> <span class="file">dma.c / gpio.c</span>        <span class="comment"># DMA1 / GPIO 输出</span>
+<span class="dir">│</span>
+<span class="dir">├── user/</span>                          <span class="comment"># 用户应用层</span>
+<span class="dir">│   ├── inc/</span>                       <span class="comment"># 头文件 25个</span>
+<span class="dir">│   │   ├──</span> <span class="file">Can_Task.h</span>            <span class="comment"># CAN 发送任务</span>
+<span class="dir">│   │   ├──</span> <span class="file">remote_control.h</span>      <span class="comment"># DBUS 遥控器解析</span>
+<span class="dir">│   │   ├──</span> <span class="file">bsp_can.h bsp_uart.h bsp_tim.h</span> <span class="comment"># BSP 层</span>
+<span class="dir">│   │   ├──</span> <span class="file">imu.h</span>                 <span class="comment"># HI14 IMU</span>
+<span class="dir">│   │   ├──</span> <span class="file">chassis.h</span>             <span class="comment"># 麦克纳姆轮底盘</span>
+<span class="dir">│   │   ├──</span> <span class="file">motor.h motor_control.h</span> <span class="comment"># 电机抽象+控制</span>
+<span class="dir">│   │   ├──</span> <span class="file">dji_motor.h dm_motor.h</span> <span class="comment"># DJI/DM 电机协议</span>
+<span class="dir">│   │   ├──</span> <span class="file">pid.h</span>                 <span class="comment"># PID 控制器</span>
+<span class="dir">│   │   ├──</span> <span class="file">Motion_Task.h</span>         <span class="comment"># 运动规划</span>
+<span class="dir">│   │   ├──</span> <span class="file">weapon.h</span>              <span class="comment"># 武器系统</span>
+<span class="dir">│   │   ├──</span> <span class="file">arm.h lift.h kfs.h</span>   <span class="comment"># 机械臂/升降/KFS</span>
+<span class="dir">│   │   ├──</span> <span class="file">cowork.h</span>              <span class="comment"># 协同控制</span>
+<span class="dir">│   │   ├──</span> <span class="file">master_control.h policy.h</span> <span class="comment"># 状态机/策略</span>
+<span class="dir">│   │   ├──</span> <span class="file">auto_mode.h</span>           <span class="comment"># 自动模式</span>
+<span class="dir">│   │   └──</span> <span class="file">register.h structure.h global.h timer.h</span> <span class="comment"># 系统支撑</span>
+<span class="dir">│   └── src/</span>                       <span class="comment"># 源文件 28个</span>
+<span class="dir">│</span>
+<span class="dir">├── Drivers/</span>                       <span class="comment"># STM32 官方驱动</span>
+<span class="dir">├── Middlewares/</span>                    <span class="comment"># FreeRTOS 中间件</span>
+<span class="dir">├── MDK-ARM/</span>                       <span class="comment"># Keil 工程</span>
+<span class="dir">└── RC26_H7_R2/</span>                    <span class="comment"># R2 升级版</span>
+</div>
+</div>
+
+<div class="section">
+<div class="section-title">⚙️ 4. 硬件外设配置总览</div>
+<table class="info-table">
+<thead><tr><th>外设</th><th>实例</th><th>关键参数</th><th>引脚</th><th>功能</th><th>中断/DMA</th></tr></thead>
+<tbody>
+<tr><td rowspan="3" style="color:var(--blue);font-weight:700">CAN<br>FDCAN</td><td>FDCAN1</td><td>Classic 1Mbps FIFO12</td><td>PD0(RX)/PD1(TX)</td><td>底盘电机总线</td><td>IT0 IRQ(Pri6)</td></tr>
+<tr><td>FDCAN2</td><td>Classic 1Mbps FIFO12</td><td>PB5(RX)/PB6(TX)</td><td>云台/武器总线</td><td>IT0 IRQ(Pri6)</td></tr>
+<tr><td>FDCAN3</td><td>Classic 1Mbps FIFO12</td><td>PD12(RX)/PD13(TX)</td><td>扩展 CAN 总线</td><td>IT0 IRQ(Pri6)</td></tr>
+<tr><td rowspan="4" style="color:var(--green);font-weight:700">串行<br>UART</td><td>UART5</td><td>115200-8N1 RX反转</td><td>PB13(TX)/PD2(RX)</td><td>遥控器 DBUS</td><td>DMA1_Str2 循环+IDLE</td></tr>
+<tr><td>UART7</td><td>115200-8N1</td><td>PE8(TX)/PE7(RX)</td><td>辅助通信</td><td>DMA1_Str3 普通</td></tr>
+<tr><td>UART8</td><td>9600-8N1</td><td>PE1(TX)/PE0(RX)</td><td>低速外设</td><td>IRQ(Pri6)</td></tr>
+<tr><td>USART2</td><td>115200-8N1 RS485 DE</td><td>PD5(TX)/PD6(RX)/PD4(DE)</td><td>IMU HI14</td><td>DMA1_Str0 循环</td></tr>
+<tr class="hl"><td rowspan="4" style="color:var(--orange);font-weight:700">定时器<br>TIM</td><td>TIM2</td><td>PSC=239 ARR=19999 50Hz</td><td>PA0(CH1)/PA2(CH3)</td><td>PWM 输出</td><td>—</td></tr>
+<tr class="hl"><td>TIM4</td><td>PSC=239 ARR=9999 ~10kHz</td><td>—</td><td>⭐ LF_Task()</td><td>IRQ(Pri6)</td></tr>
+<tr class="hl"><td>TIM5</td><td>PSC=23 ARR=39999 ~2.5kHz</td><td>—</td><td>⭐ HF_Task() CAN发送</td><td>IRQ(Pri6)</td></tr>
+<tr class="hl"><td>TIM12</td><td>PSC=23 ARR=19999 ~5kHz</td><td>—</td><td>⭐ IMU 数据采集</td><td>IRQ(Pri5)</td></tr>
+<tr><td style="color:var(--purple);font-weight:700">DMA</td><td>DMA1</td><td>Stream0/2/3 外设→内存</td><td>—</td><td>UART 数据搬运</td><td>Str IRQ(Pri5)</td></tr>
+<tr><td style="color:var(--pink);font-weight:700">GPIO</td><td>PC/PE/PB</td><td>推挽输出</td><td>PC13/14/15 PE14 PC10/11/12 PB8/9</td><td>使能/指示</td><td>—</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="section">
+<div class="section-title">🚀 5. 系统启动流程</div>
+<div class="flow-container">
+<div class="flow-step">🔄 上电复位</div><span class="flow-arrow">→</span>
+<div class="flow-step">MPU_Config()<br><small>内存保护</small></div><span class="flow-arrow">→</span>
+<div class="flow-step">HAL_Init()<br><small>HAL 初始化</small></div><span class="flow-arrow">→</span>
+<div class="flow-step">SystemClock_Config()<br><small>HSE PLL 480MHz</small></div><span class="flow-arrow">→</span>
+<div class="flow-step">MX_*_Init() x14<br><small>外设初始化</small></div><span class="flow-arrow">→</span>
+<div class="flow-step">BSP_CAN/UART_Init()<br><small>通信 BSP</small></div><span class="flow-arrow">→</span>
+<div class="flow-step">IMU_HI14_PowerOnInit()<br><small>IMU 上电</small></div><span class="flow-arrow">→</span>
+<div class="flow-step">Structue_Init()<br><small>结构体注册</small></div><span class="flow-arrow">→</span>
+<div class="flow-step">TIMx Start<br><small>PWM + 中断</small></div><span class="flow-arrow">→</span>
+<div class="flow-step">osKernelStart()<br><small>调度器启动 ✅</small></div>
+</div>
+<p style="color:var(--text2);font-size:.85em;margin-top:15px;text-align:center">
+⚡ 启动后系统进入「定时器 ISR 硬实时驱动 + FreeRTOS 任务并发」混合运行模式
+</p>
+</div>
+
+<div class="section">
+<div class="section-title">⏱️ 6. 运行时任务与中断架构</div>
+<div class="card-grid">
+<div class="card orange">
+<h3><span class="dot dot-orange"></span> ISR 层 —— 硬实时中断驱动</h3>
+<p>定时器驱动的三级中断架构：</p>
+<ul style="color:var(--text2);font-size:.9em;padding-left:20px;line-height:2">
+<li><b>TIM12 (5kHz)</b> → IMU 数据帧解析与请求<br><small>IMU_ParseFrameIfReady() + IMU_RequestAndStartRx()</small></li>
+<li><b>TIM5 (2.5kHz)</b> → HF_Task() CAN 高频发送</li>
+<li><b>TIM4 (10kHz)</b> → LF_Task() 低频控制逻辑<br><small>底盘解算、PID 更新、状态机</small></li>
+<li><b>UART5 IDLE</b> → REMOTE_IdleHandler() 遥控帧处理</li>
+</ul>
+<div class="tags"><span class="tag orange">硬实时</span><span class="tag">中断驱动</span></div>
+</div>
+<div class="card green">
+<h3><span class="dot dot-green"></span> RTOS 层 —— 并发任务</h3>
+<p>FreeRTOS 三任务，CMSIS-RTOS V2 API：</p>
+<table style="width:100%;color:var(--text2);font-size:.85em;margin-top:8px">
+<tr><td><b>defaultTask</b></td><td>Normal</td><td>128x4B</td><td>空闲/监控</td></tr>
+<tr><td><b>FreeTask</b></td><td>AboveNormal</td><td>128x4B</td><td>__weak 可重载</td></tr>
+<tr><td><b>SentTask</b></td><td>Realtime</td><td>128x4B</td><td>__weak 可重载</td></tr>
+</table>
+<div class="tags"><span class="tag green">FreeRTOS</span><span class="tag">3 Tasks</span></div>
+</div>
+<div class="card blue">
+<h3><span class="dot dot-blue"></span> 应用层 —— 28 个业务模块</h3>
+<p>覆盖机器人全部功能域：</p>
+<ul style="color:var(--text2);font-size:.9em;padding-left:20px;line-height:2">
+<li>🤖 <b>运动</b>: chassis / motor / pid / Motion_Task</li>
+<li>🔫 <b>武器</b>: weapon / arm / lift / kfs / cowork</li>
+<li>📡 <b>通信</b>: remote_control / Can_Task / bsp_*</li>
+<li>🧠 <b>决策</b>: master_control / policy / auto_mode</li>
+<li>📊 <b>传感</b>: imu / structure / global</li>
+</ul>
+<div class="tags"><span class="tag">28 模块</span><span class="tag">功能闭环</span></div>
+</div>
+</div>
+</div>
+
+<div class="section">
+<div class="section-title">📦 7. 核心模块功能详解</div>
+
+<h3 style="color:var(--blue);margin-bottom:15px">🔵 通信子系统</h3>
+<div class="card-grid">
+<div class="card blue">
+<h3>remote_control</h3>
+<p>DBUS 遥控器协议解析。UART5 DMA 循环接收 + IDLE 中断检测帧边界，解析 18 字节 DBUS 帧，映射为控制指令。</p>
+<div class="tags"><span class="tag">DBUS</span><span class="tag">UART5</span><span class="tag">IDLE</span></div>
+</div>
+<div class="card blue">
+<h3>Can_Task + bsp_can</h3>
+<p>CAN 总线管理层。bsp_can 负责 3 路 FDCAN 滤波器和收发；Can_Task 将控制指令打包发送给电机/执行器。</p>
+<div class="tags"><span class="tag">FDCANx3</span><span class="tag">滤波</span><span class="tag">HF_Task</span></div>
+</div>
+<div class="card blue">
+<h3>bsp_uart</h3>
+<p>串口板级支持包。管理 4 路 UART DMA 收发缓冲区，支持 RS485 方向控制 (USART2_DE)，提供统一回调接口。</p>
+<div class="tags"><span class="tag">UARTx4</span><span class="tag">DMA</span><span class="tag">RS485</span></div>
+</div>
+</div>
+
+<h3 style="color:var(--green);margin-bottom:15px;margin-top:25px">🟢 运动控制子系统</h3>
+<div class="card-grid">
+<div class="card green">
+<h3>chassis</h3>
+<p>麦克纳姆轮全向底盘运动学解算。vx/vy/vw → 四轮独立转速，实现全向运动。</p>
+<div class="tags"><span class="tag">麦克纳姆轮</span><span class="tag">全向</span></div>
+</div>
+<div class="card green">
+<h3>motor / motor_control</h3>
+<p>电机抽象层 + PID 控制算法。motor 封装协议细节，motor_control 实现速度/位置/力矩闭环。</p>
+<div class="tags"><span class="tag">PID</span><span class="tag">闭环</span></div>
+</div>
+<div class="card green">
+<h3>dji_motor / dm_motor</h3>
+<p>DJI M3508/M2006/GM6020 和 DM 系列电机 CAN 协议实现，指令编码与反馈解析。</p>
+<div class="tags"><span class="tag">M3508</span><span class="tag">M2006</span><span class="tag">GM6020</span></div>
+</div>
+<div class="card green">
+<h3>pid</h3>
+<p>通用 PID：P/PI/PD/PID，积分分离、输出限幅、死区控制、微分先行等工程优化。</p>
+<div class="tags"><span class="tag">PID</span><span class="tag">积分分离</span></div>
+</div>
+<div class="card green">
+<h3>Motion_Task</h3>
+<p>运动规划与轨迹生成，协调底盘/云台多轴联动，输出目标值给底层控制环。</p>
+<div class="tags"><span class="tag">轨迹</span><span class="tag">联动</span></div>
+</div>
+</div>
+
+<h3 style="color:var(--orange);margin-bottom:15px;margin-top:25px">🟠 执行机构子系统</h3>
+<div class="card-grid">
+<div class="card orange">
+<h3>weapon</h3>
+<p>武器系统：拨弹/摩擦轮控制、弹量检测、发射节奏、安全互锁。</p>
+<div class="tags"><span class="tag">发射</span><span class="tag">拨弹</span></div>
+</div>
+<div class="card orange">
+<h3>arm + lift + kfs</h3>
+<p>多自由度机械臂/升降/KFS 机构独立控制，运动学逆解、限位、PID 伺服。</p>
+<div class="tags"><span class="tag">机械臂</span><span class="tag">升降</span></div>
+</div>
+<div class="card orange">
+<h3>cowork</h3>
+<p>多机构协同：抓取-举升-放置等战术动作序列的协调配合。</p>
+<div class="tags"><span class="tag">协同</span><span class="tag">序列</span></div>
+</div>
+</div>
+
+<h3 style="color:var(--purple);margin-bottom:15px;margin-top:25px">🟣 传感器与决策</h3>
+<div class="card-grid">
+<div class="card purple">
+<h3>imu (HI14)</h3>
+<p>HI14 IMU 通过 USART2 RS485 通信，TIM12 以 5kHz 触发解析，获取角速度/加速度/欧拉角。</p>
+<div class="tags"><span class="tag">HI14</span><span class="tag">5kHz</span></div>
+</div>
+<div class="card purple">
+<h3>master_control + policy</h3>
+<p>系统主状态机 (待机/遥控/自动) + 战术决策 (进攻/防守/辅助)。</p>
+<div class="tags"><span class="tag">状态机</span><span class="tag">战术</span></div>
+</div>
+<div class="card purple">
+<h3>auto_mode</h3>
+<p>自动模式：基于 IMU 的自主导航、预设路径跟踪、自动瞄准。</p>
+<div class="tags"><span class="tag">导航</span><span class="tag">瞄准</span></div>
+</div>
+</div>
+
+<h3 style="color:var(--pink);margin-bottom:15px;margin-top:25px">🩷 系统支撑</h3>
+<div class="card-grid">
+<div class="card pink">
+<h3>register / structure</h3>
+<p>Structue_Init() 统一注册入口，初始化数据结构，建立模块间引用关系。</p>
+<div class="tags"><span class="tag">初始化</span></div>
+</div>
+<div class="card pink">
+<h3>global / timer</h3>
+<p>跨模块全局状态变量 + LF_Task/HF_Task 两级定时处理 (TIM4/TIM5 ISR)。</p>
+<div class="tags"><span class="tag">全局</span><span class="tag">LF/HF</span></div>
+</div>
+<div class="card pink">
+<h3>bsp_tim</h3>
+<p>定时器 BSP，统一管理 TIM 中断回调注册，为业务模块提供周期触发服务。</p>
+<div class="tags"><span class="tag">回调</span></div>
+</div>
+</div>
+</div>
+
+<div class="section">
+<div class="section-title">🔄 8. 数据流与信号链路</div>
+<div class="flow-container" style="flex-direction:column;gap:16px">
+<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center">
+<div class="flow-step" style="border-color:var(--blue)">🎮 遥控器</div><span class="flow-arrow">→</span>
+<div class="flow-step">DR16 接收机</div><span class="flow-arrow">→</span>
+<div class="flow-step">UART5 DBUS</div><span class="flow-arrow">→</span>
+<div class="flow-step">remote_control<br><small>解析</small></div><span class="flow-arrow">→</span>
+<div class="flow-step">master_control<br><small>分发</small></div><span class="flow-arrow">→</span>
+<div class="flow-step" style="border-color:var(--accent)">chassis / weapon...</div>
+</div>
+<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center">
+<div class="flow-step" style="border-color:var(--purple)">📡 HI14 IMU</div><span class="flow-arrow">→</span>
+<div class="flow-step">USART2 RS485<br><small>DMA 循环</small></div><span class="flow-arrow">→</span>
+<div class="flow-step">imu<br><small>TIM12 5kHz</small></div><span class="flow-arrow">→</span>
+<div class="flow-step" style="border-color:var(--accent)">chassis / auto_mode</div>
+</div>
+<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center">
+<div class="flow-step" style="border-color:var(--accent)">🎯 控制指令</div><span class="flow-arrow">→</span>
+<div class="flow-step">motor_control<br><small>PID</small></div><span class="flow-arrow">→</span>
+<div class="flow-step">dji/dm_motor<br><small>CAN编码</small></div><span class="flow-arrow">→</span>
+<div class="flow-step">Can_Task<br><small>HF_Task</small></div><span class="flow-arrow">→</span>
+<div class="flow-step">FDCAN1/2/3</div><span class="flow-arrow">→</span>
+<div class="flow-step" style="border-color:var(--green)">⚙️ 电机</div>
+</div>
+</div>
+</div>
+
+<div class="section">
+<div class="section-title">⚡ 9. 中断优先级</div>
+<table class="info-table">
+<thead><tr><th>中断源</th><th>Pri</th><th>业务函数</th><th>功能</th></tr></thead>
+<tbody>
+<tr><td>DMA1_Stream0/2/3</td><td>5/0</td><td>HAL_DMA_IRQHandler</td><td>UART DMA</td></tr>
+<tr><td>USART2/UART5/UART7</td><td>5/0</td><td>REMOTE_IdleHandler(UART5)</td><td>串口+遥控IDLE</td></tr>
+<tr class="hl"><td>TIM8_BRK_TIM12</td><td>5/0</td><td>IMU_ParseFrameIfReady</td><td>⭐ IMU (5kHz)</td></tr>
+<tr class="hl"><td>TIM4</td><td>6/0</td><td>LF_Task()</td><td>⭐ 低频 (~10kHz)</td></tr>
+<tr class="hl"><td>TIM5</td><td>6/0</td><td>HF_Task()</td><td>⭐ CAN发送 (~2.5kHz)</td></tr>
+<tr><td>FDCAN1/2/3 IT0</td><td>6/0</td><td>HAL_FDCAN_IRQHandler</td><td>CAN 接收</td></tr>
+<tr><td>UART8</td><td>6/0</td><td>HAL_UART_IRQHandler</td><td>低速通信</td></tr>
+<tr><td>PendSV/SysTick</td><td>15/0</td><td>FreeRTOS 调度</td><td>RTOS</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="section">
+<div class="section-title">🆕 10. RC26_H7_R2 升级版对比</div>
+<div class="card-grid">
+<div class="card highlight">
+<h3><span class="dot dot-red"></span> R1 (基础版)</h3>
+<ul style="color:var(--text2);font-size:.9em;padding-left:20px;line-height:2">
+<li>HI14 IMU 通过 USART2 RS485 外接</li><li>3 路 FDCAN</li><li>无 USB</li><li>无 SPI</li><li>2 路 PWM</li>
+</ul>
+</div>
+<div class="card green">
+<h3><span class="dot dot-green"></span> RC26_H7_R2 (升级版)</h3>
+<ul style="color:var(--text2);font-size:.9em;padding-left:20px;line-height:2">
+<li>➕ BMI088 IMU SPI 直驱</li><li>➕ USB PCD 支持</li><li>➕ Sensor_Task</li><li>➕ Process_Flow</li><li>➕ clamp_head_ctrl</li><li>➕ zone1/rc_nav/rc_odom</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="section">
+<div class="section-title">💡 11. 关键设计模式</div>
+<div class="card-grid">
+<div class="card highlight">
+<h3>🔴 ISR + RTOS 混合架构</h3>
+<p>硬实时控制 (CAN发送/IMU采集) 放在 ISR 定时器精确驱动；非实时任务在 FreeRTOS 调度。</p>
+</div>
+<div class="card orange">
+<h3>🟠 电机分层抽象</h3>
+<p>motor(接口) → dji_motor/dm_motor(协议) → CAN(传输)。更换电机只需换底层。</p>
+</div>
+<div class="card green">
+<h3>🟢 BSP 模式分离硬件</h3>
+<p>bsp_can/uart/tim 封装 HAL，业务模块不直接依赖 HAL，MCU 变更只改 BSP。</p>
+</div>
+<div class="card blue">
+<h3>🔵 __weak 可重载任务</h3>
+<p>FreeTask/SentTask 声明 __weak，user/ 层重载不修改 Core/ 代码，保护 CubeMX 再生。</p>
+</div>
+<div class="card purple">
+<h3>🟣 全局状态 + 模块组合</h3>
+<p>global 跨模块共享，各模块独立开发，通过 cowork + master_control 组合。</p>
+</div>
+<div class="card pink">
+<h3>🩷 CubeMX 代码再生安全</h3>
+<p>USER CODE BEGIN/END 块保护用户代码，CubeMX 重新生成不丢失业务逻辑。</p>
+</div>
+</div>
+</div>
+
+</div>
+
+<div class="footer">
+<p>📄 R1 机器人控制代码框架文档 — 基于实际代码分析生成 — 2026-06-09</p>
+<p style="margin-top:5px">MCU: STM32H723VGT6 | OS: FreeRTOS | IDE: Keil MDK-ARM | HAL: STM32H7xx</p>
+</div>
+
+</body>
+</html>

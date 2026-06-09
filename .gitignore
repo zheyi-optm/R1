@@ -57,7 +57,7 @@ Release/
 *.launch
 
 # ==================== Driver auto-generated HAL init files ====================
-# 这些虽然代码有价值，但属于 HAL 自动生成，可以按团队约定决定是否保留
+# 这些虽然代码有价值，但属�? HAL 自动生成，可以按团队约定决定是否保留
 # Core/Src/stm32h7xx_hal_msp.c
 # Core/Src/stm32h7xx_it.c
 # Core/Src/system_stm32h7xx.c
