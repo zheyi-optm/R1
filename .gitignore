@@ -1,0 +1,57 @@
+# =================================================================
+# Keil MDK (uVision) build outputs and intermediates
+# =================================================================
+*.o
+*.d
+*.crf
+*.dep
+*.lnp
+*.axf
+*.sct
+*.lst
+*.map
+*.htm
+*.build_log.htm
+*.i
+*.__i
+*.tmp
+*.bak
+*.scvd
+*._ia
+*.txt
+*.uvgui.*
+*.uvguix.*
+*.uvoptx
+*.uvopt
+RTE_Components.h
+
+# Common output folders
+**/Listings/
+**/Objects/
+**/DebugConfig/
+
+# =================================================================
+# STM32CubeMX related
+# Keep .ioc in repository; ignore generated metadata only
+# =================================================================
+.mxproject
+
+# =================================================================
+# OS / editor files
+# =================================================================
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+
+# =================================================================
+# Firmware binary outputs
+# =================================================================
+*.bin
+*.hex
+*.elf
+
+# =================================================================
+# Keep RTE_Components.h tracked (required by Keil project includes)
+# =================================================================
+!**/RTE_Components.h
