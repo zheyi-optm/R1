@@ -25,10 +25,6 @@ void BSP_USART_Init(void);
 static void REMOTE_ExtractFrame(const uint8_t *buf, uint16_t size,
                                 uint16_t start, uint16_t end);
 extern void REMOTE_IdleHandler(void);
-extern void BSP_USART2_DE(uint8_t en);
-extern void BSP_USART2_StartRxIT(void);
-extern void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size);
 
-extern volatile imu_uart_ctx_t g_imu_uart_ctx;
 
 #endif

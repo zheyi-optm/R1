@@ -1,8 +1,6 @@
 #include "bsp_uart.h"
 #include "usart.h"
 
-volatile imu_uart_ctx_t g_imu_uart_ctx = {0};
-
 static uint16_t remote_last_pos = 0;   // ?????IDLE???DMAд???
 
 void BSP_USART_Init(void)
@@ -89,45 +87,6 @@ static void REMOTE_ExtractFrame(const uint8_t *buf, uint16_t size,
 }
 
 
-/**
- * @brief ????RS485???????
- * @param en: 1=??????, 0=??????
- * PD4 = USART2_DE (???????)
- */
-void BSP_USART2_DE(uint8_t en)
-{
-    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_4, (en != 0U) ? GPIO_PIN_SET : GPIO_PIN_RESET);
-}
-
-/** 启动 USART2（IMU/RS485）ReceiveToIdle 中断接收 */
-void BSP_USART2_StartRxIT(void)
-{
-    g_imu_uart_ctx.rx_ready = 0U;
-    g_imu_uart_ctx.rx_size = 0U;
-    g_imu_uart_ctx.start_rx_cnt++;
-    g_imu_uart_ctx.uart2_gstate_dbg = (uint32_t)huart2.gState;
-    g_imu_uart_ctx.uart2_rxstate_dbg = (uint32_t)huart2.RxState;
-    g_imu_uart_ctx.uart2_isr_dbg = huart2.Instance->ISR;
-    g_imu_uart_ctx.uart2_err_dbg = (uint32_t)huart2.ErrorCode;
-    (void)HAL_UART_AbortReceive(&huart2);
-    g_imu_uart_ctx.start_rx_ret =
-        (uint32_t)HAL_UARTEx_ReceiveToIdle_IT(&huart2, (uint8_t *)g_imu_uart_ctx.rx_buf, sizeof(g_imu_uart_ctx.rx_buf));
-    if (g_imu_uart_ctx.start_rx_ret == 2U)
-    {
-        g_imu_uart_ctx.start_rx_busy_cnt++;
-    }
-}
-
-/* ??HAL_UARTEx_RxEventCallback?д???HI14???? */
-void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
-{
-    if (huart == &huart2)  /* HI14??????USART2 */
-    {
-        /* ???????????????????е???IMU_ParseFrame???? */
-        g_imu_uart_ctx.rx_size = Size;
-        g_imu_uart_ctx.rx_ready = 1U;
-    }
-}
 
 
 

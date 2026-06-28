@@ -8,7 +8,7 @@ typedef struct
 {
  uint8_t wep_change;
  uint8_t button_new;
- uint8_t cent_count;
+ uint8_t sent_count;
 	
 }BUT_FLAG;
 

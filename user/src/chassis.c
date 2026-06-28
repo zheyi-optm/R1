@@ -55,9 +55,9 @@ void Chassis_Calc(Chassis_Module *chassis)
   else  //非锁定非死区
 {
 	  SP_ACCEL = SPEED_ACCEL ;
-    SP_X = SPEED_X ;
-    SP_Y = SPEED_Y ;   //非触发状态，对接车头
-    SP_W = - SPEED_WO ;
+    SP_X = - SPEED_X ;
+    SP_Y = - SPEED_Y ;   //非触发状态，对接车头
+    SP_W =   SPEED_WO ;
 	
 	if(RCctrl.switch_dir == 1)//按键触发状态切换机械臂车头
   {
@@ -155,11 +155,6 @@ float auto_Vout[4] = {0};
 
 void auto_chassis()
 {
-	  SP_ACCEL = SPEED_ACCEL ;
-    SP_X = SPEED_X ;
-    SP_Y = SPEED_Y ;   //非触发状态，对接车头
-    SP_W = - SPEED_WO ;       //里程计配合remoteread函数负责给源参数赋值
-	
     target_angle[0] = atan2f(SP_Y + SP_W * RX , SP_X - SP_W * RY);
 	  target_angle[1] = atan2f(SP_Y + SP_W * (-RX) , SP_X - SP_W * RY);
 	  target_angle[2] = atan2f(SP_Y + SP_W * (-RX) , SP_X - SP_W * (-RY));

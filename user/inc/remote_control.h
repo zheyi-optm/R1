@@ -13,7 +13,7 @@
 #define SBUS_RX_BUF_NUM 50u
 #define RC_FRAME_LENGTH 25u
 #define RC_CH_VALUE_OFFSET 1024U
-#define REMOTE_BUF_SIZE   64    // 用2的幂次方便处理，必须大于9*2//
+#define REMOTE_BUF_SIZE   32    // 用2的幂次方便处理，必须大于9*2//
 ////R_HORIZONTAL
 //#define CH1_LOW     1693        //LEFT        
 //#define CH1_HIGH    306         //RIGHT
@@ -136,7 +136,11 @@ typedef  struct
 	 uint8_t cells[12];
 	 
 	 bool rc_lost;
-	 bool received;
+	 bool received;   //二区配置
+	 bool fir_rec;    //一区松夹
+	 uint8_t th_rec;  //1~5 = 左/中/右/STOP/上R1
+	 bool th_put;     //放KFS
+   	 
 	 uint16_t online_cnt;
 }Remote_Info_Typedef_New;
 

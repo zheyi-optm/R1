@@ -105,6 +105,11 @@ extern DJI_MotorModule chassis_motor2;  //
 extern DJI_MotorModule chassis_motor3;  // 
 extern DJI_MotorModule chassis_motor4;  // 
 
+extern float SP_ACCEL;
+extern float SP_X;
+extern float SP_Y;
+extern float SP_W;
+
 extern float angle_now[4];
 extern float auto_Vout[4];
 

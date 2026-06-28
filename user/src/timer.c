@@ -4,7 +4,7 @@ BUT_FLAG BUT_flag =
 {
   .wep_change = 0,   //换杆计数
 	.button_new = 0,   //换杆新信息标志位
-	.cent_count = 0,   //发送次数计数
+	.sent_count = 0,   //发送次数计数
 };
 
 uint8_t but_read[3] = {0,0,0};//LAST,MID,CURRENT

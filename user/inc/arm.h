@@ -59,6 +59,10 @@ typedef struct
     float Torque_3;  // µç»ú3Á¦¾Ø
 }ArmTorqueTypeDef;
 
+extern Arm_Info_TypeDef arm;
+extern ArmAnglesTypeDef angles;
+extern ArmTorqueTypeDef Torque;
+
 extern ArmAnglesTypeDef Arm_Inverse_Solution(Arm_Info_TypeDef *arm);
 extern ArmTorqueTypeDef Torque_Comp_remote(ArmAnglesTypeDef *angle,Arm_Info_TypeDef *arm);
 extern ArmTorqueTypeDef Torque_Comp_global(DM_MotorModule *arm_1,DM_MotorModule *arm_2,DM_MotorModule *arm_3);

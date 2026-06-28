@@ -108,8 +108,8 @@ void DMget_motor_measure(DM_MotorModule *obj, uint8_t rx_data[8])
 			break;
 		}
 				case DM_T4340:{  
-			P_MAX = 25.0f;		
-			V_MAX = 30.f; 			
+			P_MAX = 31.4f;		
+			V_MAX = 35.f; 			
 			T_MAX = 15.f;				
 			break;
 		}			
@@ -195,7 +195,7 @@ HAL_StatusTypeDef DMset_mit_data(DM_MotorModule *obj, float Position, float Velo
 			P_MAX = 12.5f; V_MAX = 30.f; T_MAX = 15.f;
 			break;
 			  case DM_T4340 :
-			P_MAX = 25.0f; V_MAX = 30.f; T_MAX = 15.f;
+			P_MAX = 31.4f; V_MAX = 35.f; T_MAX = 15.f;
       break;
 		default:
 			break;   

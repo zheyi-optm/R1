@@ -97,6 +97,7 @@ void in_place_fast(float t_position,float *sent_p,float c_position,float *sent_s
  if(t_position - ignore_diff <= c_position && c_position <= t_position + ignore_diff)
  {
 	 *sent_p = t_position;
+	 *sent_sp = 0.0f;
    *s_kp = h_kp;
 	 *s_kd = hold_kd; 
 	 *s_t = hold_t; 
@@ -110,7 +111,7 @@ float v_diff_last = 0.0f;
 float diff_i = 0.0f;   //积分项
 float i_range = 100.0f;  //积分限幅
 float v_amp = 0.0f;     //amplitude,变化幅度，变化率
-float vpid[3] = {1.5f,0.03f,0.2f};//kp,ki,kd参数
+float vpid[3] = {1.0f,0.02f,0.2f};//kp,ki,kd参数
 
 //速度环pid同步函数
 
@@ -138,7 +139,7 @@ float p_diff = 0.0f;
 float p_diff_last = 0.0f;
 float p_diff_i = 0.0f;
 float p_amp = 0.0f;
-float ppid[3] = {4.0f,0.04f,0.5f};
+float ppid[3] = {3.0f,0.04f,0.4f};
 
 void side_by_side(float motor_1p,float motor_2p,float *T)
 {

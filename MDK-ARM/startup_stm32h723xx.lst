@@ -1267,10 +1267,11 @@ interwork --depend=rc26_h7_r1\startup_stm32h723xx.d -orc26_h7_r1\startup_stm32h
 7xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include 
 -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Thi
 rd_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I../Drivers/CMSIS/Device/ST/ST
-M32H7xx/Include -I../Drivers/CMSIS/Include -I.\RTE\_RC26_H7_R1 -ID:\Keil_v5\Arm
-\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include --predefine="__MICROLIB SETA 1" --pre
-define="__UVISION_VERSION SETA 542" --predefine="STM32H723xx SETA 1" --predefin
-e="_RTE_ SETA 1" --list=startup_stm32h723xx.lst startup_stm32h723xx.s
+M32H7xx/Include -I../Drivers/CMSIS/Include -I.\RTE\_RC26_H7_R1 -ID:\MDK5.36\Pac
+ks\ARM\CMSIS\5.8.0\CMSIS\Core\Include --predefine="__MICROLIB SETA 1" --predefi
+ne="__UVISION_VERSION SETA 536" --predefine="_RTE_ SETA 1" --predefine="STM32H7
+23xx SETA 1" --predefine="_RTE_ SETA 1" --list=startup_stm32h723xx.lst startup_
+stm32h723xx.s
 
 
 

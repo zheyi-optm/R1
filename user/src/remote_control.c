@@ -37,6 +37,7 @@ float data_convert(int src, int src_min, int src_max, float dst_low, float dst_h
 Remote_Info_Typedef_New RCctrl={
 	.online_cnt = 0xFAU,
 	.rc_lost = true,
+	.th_rec =0,
 };
 
 /**

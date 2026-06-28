@@ -1,8 +1,15 @@
 #include "cowork.h"
 
-bool sent_flag = 0;           //发送准许标志位
+bool sent_flag = false;           //发送准许标志位
 
 uint8_t uart8_tx_buf[7];
+uint8_t four_sent[4];
+uint8_t th_sent[4];
+
+//1区对接指令：4 字节信令帧：CC + cmd + chk + DD（CC 01 CD DD）
+//三区 STOP：EE + cmd_id + chk + FF   （EE 04 EA FF）
+//三区指令：EE + cmd_id(1B) + chk(EE^cmd_id) + FF  【cmd_id 1~5 = 左/中/右/STOP/上R1】
+//三区放KFS：55 01 54 AA
 
 void uart8_tx_init()
 {
@@ -74,6 +81,31 @@ static uint8_t combine_4bit(uint8_t high_4bit, uint8_t low_4bit)//位合并函数
         }
     }
 }
+
+void fir_dismiss()   //一区松夹爪数组赋值
+{
+  four_sent[0] = 0xCC;
+	four_sent[1] = 0x01;
+	four_sent[2] = 0xCD;
+	four_sent[3] = 0xDD;
+}
+
+void th_order()      //三区放KFS数组赋值
+{
+  four_sent[0] = 0x55;
+	four_sent[1] = 0x01;
+	four_sent[2] = 0x54;
+	four_sent[3] = 0xAA;
+}
+
+void th_5mode()      //三区1~5指令集，数组赋值
+{
+  th_sent[0] = 0xEE;
+	th_sent[1] = RCctrl.th_rec;
+	th_sent[2] = 0xEE ^ th_sent[1];
+	th_sent[3] = 0xFF;
+}
+
 
 void sense()
 {
