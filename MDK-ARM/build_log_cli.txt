@@ -1,0 +1,323 @@
+*** Using Compiler 'V5.06 update 7 (build 960)', folder: 'E:\Keil5\Core\ARM\ARMCC\Bin'
+Rebuild target 'RC26_H7_R1'
+assembling startup_stm32h723xx.s...
+compiling fdcan.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../Core/Src/fdcan.c: 1 warning, 0 errors
+compiling dma.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../Core/Src/dma.c: 1 warning, 0 errors
+compiling gpio.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../Core/Src/gpio.c: 1 warning, 0 errors
+compiling stm32h7xx_hal_timebase_tim.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../Core/Src/stm32h7xx_hal_timebase_tim.c: 1 warning, 0 errors
+compiling stm32h7xx_it.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../user/inc/policy.h(38): warning:  #1-D: last line of file ends without a newline
+  											 
+../Core/Src/stm32h7xx_it.c: 2 warnings, 0 errors
+compiling stm32h7xx_hal_msp.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../Core/Src/stm32h7xx_hal_msp.c: 1 warning, 0 errors
+compiling tim.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../Core/Src/tim.c: 1 warning, 0 errors
+compiling freertos.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../Core/Src/freertos.c: 1 warning, 0 errors
+compiling usart.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../Core/Src/usart.c: 1 warning, 0 errors
+compiling main.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../user/inc/policy.h(38): warning:  #1-D: last line of file ends without a newline
+  											 
+../Core/Src/main.c: 2 warnings, 0 errors
+compiling stm32h7xx_hal_tim.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.c: 1 warning, 0 errors
+compiling stm32h7xx_hal_cortex.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_cortex.c: 1 warning, 0 errors
+compiling stm32h7xx_hal_rcc.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc.c: 1 warning, 0 errors
+compiling stm32h7xx_hal_flash.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_flash.c: 1 warning, 0 errors
+compiling stm32h7xx_hal_tim_ex.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim_ex.c: 1 warning, 0 errors
+compiling stm32h7xx_hal_hsem.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_hsem.c: 1 warning, 0 errors
+compiling stm32h7xx_hal_gpio.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c: 1 warning, 0 errors
+compiling stm32h7xx_hal_rcc_ex.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.c: 1 warning, 0 errors
+compiling stm32h7xx_hal_flash_ex.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_flash_ex.c: 1 warning, 0 errors
+compiling stm32h7xx_hal_dma_ex.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_dma_ex.c: 1 warning, 0 errors
+compiling stm32h7xx_hal_dma.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_dma.c: 1 warning, 0 errors
+compiling stm32h7xx_hal_mdma.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_mdma.c: 1 warning, 0 errors
+compiling stm32h7xx_hal_pwr.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr.c: 1 warning, 0 errors
+compiling mpu_wrappers_v2.c...
+compiling croutine.c...
+compiling stm32h7xx_hal_pwr_ex.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr_ex.c: 1 warning, 0 errors
+compiling stm32h7xx_hal.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal.c: 1 warning, 0 errors
+compiling stm32h7xx_hal_i2c_ex.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_i2c_ex.c: 1 warning, 0 errors
+compiling stm32h7xx_hal_exti.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_exti.c: 1 warning, 0 errors
+compiling event_groups.c...
+compiling system_stm32h7xx.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../Core/Src/system_stm32h7xx.c: 1 warning, 0 errors
+compiling stm32h7xx_hal_uart_ex.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart_ex.c: 1 warning, 0 errors
+compiling list.c...
+compiling stm32h7xx_hal_i2c.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_i2c.c: 1 warning, 0 errors
+compiling queue.c...
+compiling stm32h7xx_hal_fdcan.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_fdcan.c: 1 warning, 0 errors
+compiling stm32h7xx_hal_uart.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart.c: 1 warning, 0 errors
+compiling stream_buffer.c...
+compiling timers.c...
+compiling heap_4.c...
+compiling tasks.c...
+compiling bsp_tim.c...
+compiling port.c...
+compiling bsp_can.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../user/inc/policy.h(38): warning:  #1-D: last line of file ends without a newline
+  											 
+..\user\src\bsp_can.c: 2 warnings, 0 errors
+compiling cmsis_os2.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c: 1 warning, 0 errors
+compiling bsp_uart.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../user/inc/policy.h(38): warning:  #1-D: last line of file ends without a newline
+  											 
+..\user\src\bsp_uart.c: 2 warnings, 0 errors
+compiling dji_motor.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+..\user\src\dji_motor.c: 1 warning, 0 errors
+compiling motor.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+..\user\src\motor.c(4): warning:  #177-D: variable "Motor"  was declared but never referenced
+      MotorModule *Motor = (MotorModule *)base;
+..\user\src\motor.c(12): warning:  #177-D: variable "Motor"  was declared but never referenced
+      MotorModule *Motor = (MotorModule*)base;
+..\user\src\motor.c: 3 warnings, 0 errors
+compiling dm_motor.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+..\user\src\dm_motor.c: 1 warning, 0 errors
+compiling kfs.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../user/inc/policy.h(38): warning:  #1-D: last line of file ends without a newline
+  											 
+..\user\src\kfs.c: 2 warnings, 0 errors
+compiling structure.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+..\user\src\structure.c(4): warning:  #177-D: variable "Structure"  was declared but never referenced
+      StructureModule *Structure = (StructureModule *)base;
+..\user\src\structure.c(12): warning:  #177-D: variable "Structure"  was declared but never referenced
+      StructureModule *Structure = (StructureModule*)base;
+..\user\src\structure.c: 3 warnings, 0 errors
+compiling chassis.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../user/inc/policy.h(38): warning:  #1-D: last line of file ends without a newline
+  											 
+..\user\src\chassis.c: 2 warnings, 0 errors
+compiling lift.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../user/inc/policy.h(38): warning:  #1-D: last line of file ends without a newline
+  											 
+..\user\src\lift.c: 2 warnings, 0 errors
+compiling weapon.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../user/inc/policy.h(38): warning:  #1-D: last line of file ends without a newline
+  											 
+..\user\src\weapon.c: 2 warnings, 0 errors
+compiling master_control.c...
+compiling timer.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../user/inc/policy.h(38): warning:  #1-D: last line of file ends without a newline
+  											 
+..\user\src\timer.c: 2 warnings, 0 errors
+compiling remote_control.c...
+../user/inc/policy.h(38): warning:  #1-D: last line of file ends without a newline
+  											 
+..\user\src\remote_control.c: 1 warning, 0 errors
+compiling cowork.c...
+../user/inc/policy.h(38): warning:  #1-D: last line of file ends without a newline
+  											 
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+..\user\src\cowork.c: 2 warnings, 0 errors
+compiling pid.c...
+compiling auto_mode.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../user/inc/policy.h(38): warning:  #1-D: last line of file ends without a newline
+  											 
+../user/inc/auto_mode.h(23): warning:  #1295-D: Deprecated declaration auto_mission - give arg types
+  extern void auto_mission();
+../user/inc/auto_mode.h(24): warning:  #1295-D: Deprecated declaration auto_second_inplace - give arg types
+  extern void auto_second_inplace();
+..\user\src\auto_mode.c: 4 warnings, 0 errors
+compiling Motion_Task.c...
+../user/inc/policy.h(38): warning:  #1-D: last line of file ends without a newline
+  											 
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+..\user\src\Motion_Task.c: 2 warnings, 0 errors
+compiling Can_Task.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../user/inc/policy.h(38): warning:  #1-D: last line of file ends without a newline
+  											 
+../user/inc/auto_mode.h(23): warning:  #1295-D: Deprecated declaration auto_mission - give arg types
+  extern void auto_mission();
+../user/inc/auto_mode.h(24): warning:  #1295-D: Deprecated declaration auto_second_inplace - give arg types
+  extern void auto_second_inplace();
+..\user\src\Can_Task.c: 4 warnings, 0 errors
+compiling policy.c...
+../user/inc/policy.h(38): warning:  #1-D: last line of file ends without a newline
+  											 
+..\user\src\policy.c: 1 warning, 0 errors
+compiling global.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+..\user\src\global.c: 1 warning, 0 errors
+compiling register.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../user/inc/policy.h(38): warning:  #1-D: last line of file ends without a newline
+  											 
+..\user\src\register.c: 2 warnings, 0 errors
+compiling motor_control.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+..\user\src\motor_control.c(45): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  	 *s_t = 1.5*h_t;
+..\user\src\motor_control.c: 2 warnings, 0 errors
+compiling arm.c...
+../Drivers/CMSIS/Include/cachel1_armv7.h(188): warning:  #1041-D: alignment for an auto object may not be larger than 8
+      } locals
+../user/inc/policy.h(38): warning:  #1-D: last line of file ends without a newline
+  											 
+..\user\src\arm.c(112): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                arm_3->set_mit_data(arm_3,25*(PI/2.0f+arm_1->position-0.43+arm_2->position-PI*0.12f),0.0f,0.2f,0.15f,0.8*Torque.Torque_3);
+..\user\src\arm.c(112): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                arm_3->set_mit_data(arm_3,25*(PI/2.0f+arm_1->position-0.43+arm_2->position-PI*0.12f),0.0f,0.2f,0.15f,0.8*Torque.Torque_3);
+..\user\src\arm.c(125): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                arm_3->set_mit_data(arm_3,-25*(angles.theta_3+0.11*PI),0.0f,0.15f,0.1f,0.0f);
+..\user\src\arm.c(150): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                  arm_3->set_mit_data(arm_3,-52.0f,0.0f,0.13f,0.6f,1.0*Torque.Torque_3);
+..\user\src\arm.c(158): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                  arm_3->set_mit_data(arm_3,-52.0f,0.0f,0.13f,0.6f,1.0*Torque.Torque_3);
+..\user\src\arm.c(169): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                  arm_3->set_mit_data(arm_3,-32.0f,0.0f,0.13f,0.6f,0.1*Torque.Torque_3);
+..\user\src\arm.c(205): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                arm_3->set_mit_data(arm_3,-25*(-arm_2->position-arm_1->position+0.43+a_weapon+0.2*PI),0.0f,3.0f,1.5f,Torque.Torque_3);
+..\user\src\arm.c(205): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                arm_3->set_mit_data(arm_3,-25*(-arm_2->position-arm_1->position+0.43+a_weapon+0.2*PI),0.0f,3.0f,1.5f,Torque.Torque_3);
+..\user\src\arm.c(230): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                arm_3->set_mit_data(arm_3,25*(PI/2.0f+arm_1->position-0.43+arm_2->position-0.1*PI),0.0f,0.15f,0.1f,0.8*Torque.Torque_3);
+..\user\src\arm.c(230): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                arm_3->set_mit_data(arm_3,25*(PI/2.0f+arm_1->position-0.43+arm_2->position-0.1*PI),0.0f,0.15f,0.1f,0.8*Torque.Torque_3);
+..\user\src\arm.c(230): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                arm_3->set_mit_data(arm_3,25*(PI/2.0f+arm_1->position-0.43+arm_2->position-0.1*PI),0.0f,0.15f,0.1f,0.8*Torque.Torque_3);
+..\user\src\arm.c(244): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                arm_3->set_mit_data(arm_3,25*(PI/2.0f+arm_1->position-0.43+arm_2->position-0.09*PI),0.0f,0.15f,0.1f,0.8*Torque.Torque_3);
+..\user\src\arm.c(244): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                arm_3->set_mit_data(arm_3,25*(PI/2.0f+arm_1->position-0.43+arm_2->position-0.09*PI),0.0f,0.15f,0.1f,0.8*Torque.Torque_3);
+..\user\src\arm.c(244): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                arm_3->set_mit_data(arm_3,25*(PI/2.0f+arm_1->position-0.43+arm_2->position-0.09*PI),0.0f,0.15f,0.1f,0.8*Torque.Torque_3);
+..\user\src\arm.c(257): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                arm_2->set_mit_data(arm_2,-angles.theta_2+(arm_1->position-0.11)*arm_1->position,0.0f,65.0f,5.0f,-0.25*Torque.Torque_2);
+..\user\src\arm.c(258): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                arm_3->set_mit_data(arm_3,25*(PI/2.0f+1.5*arm_1->position-0.43+arm_2->position-0.03*PI+(0.11-arm_1->position)*arm_1->position),0.0f,0.3f,0.15f,1.5*Torque.Torque_3);
+..\user\src\arm.c(258): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                arm_3->set_mit_data(arm_3,25*(PI/2.0f+1.5*arm_1->position-0.43+arm_2->position-0.03*PI+(0.11-arm_1->position)*arm_1->position),0.0f,0.3f,0.15f,1.5*Torque.Torque_3);
+..\user\src\arm.c(258): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                arm_3->set_mit_data(arm_3,25*(PI/2.0f+1.5*arm_1->position-0.43+arm_2->position-0.03*PI+(0.11-arm_1->position)*arm_1->position),0.0f,0.3f,0.15f,1.5*Torque.Torque_3);
+..\user\src\arm.c(258): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                arm_3->set_mit_data(arm_3,25*(PI/2.0f+1.5*arm_1->position-0.43+arm_2->position-0.03*PI+(0.11-arm_1->position)*arm_1->position),0.0f,0.3f,0.15f,1.5*Torque.Torque_3);
+..\user\src\arm.c: 21 warnings, 0 errors
+linking...
+Program Size: Code=74524 RO-data=1376 RW-data=528 ZI-data=29192  
+FromELF: creating hex file...
+"RC26_H7_R1\RC26_H7_R1.axf" - 0 Error(s), 97 Warning(s).
+Build Time Elapsed:  00:00:04
