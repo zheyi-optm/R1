@@ -112,10 +112,11 @@ int main(void)
   MX_UART8_Init();
   MX_TIM12_Init();
   MX_USART2_UART_Init();
+  MX_UART9_Init();
+  MX_USART10_UART_Init();
   /* USER CODE BEGIN 2 */
   BSP_CAN_Init();
   BSP_USART_Init();
-  (void)IMU_HI14_PowerOnInit();
 	
   HAL_Delay(1500);
   Structue_Init();
@@ -124,8 +125,7 @@ int main(void)
 	HAL_TIM_Base_Start(&htim2);
   HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_1 );
   HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_3 );
-	BSP_USART2_DE(0U);  /* ???????????? */
-	HAL_TIM_Base_Start_IT(&htim12);
+
 	HAL_TIM_Base_Start(&htim4);
 	HAL_TIM_Base_Start_IT(&htim4);
 	HAL_TIM_Base_Start(&htim5);
